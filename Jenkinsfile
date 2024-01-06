@@ -16,5 +16,12 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
+        stage('Deploy') {
+            step {
+                sh './jenkins/scripts/deliver.sh'
+                input message: 'sudah selesai menggunakan react app? (klik "proceed" untuk mengakhiri)'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
     }
 }
